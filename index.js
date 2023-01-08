@@ -86,3 +86,38 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+console.log("Financial Analysis");
+console.log("----------------------------");
+
+// 1. Total number of months in dataset
+let totalMonths = finances.length
+console.log("Total Months:", finances.length);
+
+
+// 2. Total amount of profit/losses in dataset
+let financialChanges = 0
+ for (let i = 0; i < finances.length; i++) {
+    //  console.log(finances[i][1]);
+     financialChanges += finances[i][1];
+}
+console.log("Total profit/loss:", financialChanges);
+
+// // Find average of profit/loss dataset
+let totalChange = 0
+for (let i = 1; i < finances.length - 1; i++) {
+    monthlyChange = finances[i][1] - finances[i - 1][1];
+    totalChange += monthlyChange;
+}
+// console.log(totalChange);
+let averageMoney = totalChange/finances.length;
+averageMoney = Math.round(averageMoney * 100)/100
+console.log("Average Change: $" + averageMoney);
+
+
+// for (let i = 0; i < finances.length; i++) {
+//          financialChanges += finances[i][1];
+//         monthlyDiff = finances[i][1][i-1] - finances[i][1][i];
+//         console.log(monthlyDiff);
+//     }
+
