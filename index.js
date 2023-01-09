@@ -93,6 +93,7 @@ console.log("----------------------------");
 // 1. Total number of months in dataset
 let totalMonths = finances.length
 console.log("Total Months:", finances.length);
+document.getElementById("totalMonths").innerHTML = "Total Months: " + totalMonths
 
 
 // 2. Total amount of profit/losses in dataset
@@ -102,22 +103,44 @@ let financialChanges = 0
      financialChanges += finances[i][1];
 }
 console.log("Total profit/loss:", financialChanges);
+document.getElementById("totalSum").innerHTML = "Total profit/loss: $" + financialChanges
+
 
 // // Find average of profit/loss dataset
 let totalChange = 0
-for (let i = 1; i < finances.length - 1; i++) {
+for (let i = 1; i < finances.length; i++) {
     monthlyChange = finances[i][1] - finances[i - 1][1];
     totalChange += monthlyChange;
 }
 // console.log(totalChange);
-let averageMoney = totalChange/finances.length;
+let averageMoney = totalChange / finances.length;
 averageMoney = Math.round(averageMoney * 100)/100
 console.log("Average Change: $" + averageMoney);
+document.getElementById("averageChange").innerHTML = "Average Change: $" + averageMoney
 
+// Find max and min profit
+let newList = [] //create new array for only numbers
+for (let i = 0; i < finances.length; i++) {
+    if (finances[i][1]) {
+        newList.push(finances[i][1])
+    };
+    }
+ 
+    // Identify the corresponding index in finance array and match max and min to them
+    theMax = (Math.max(...newList))
+    for (let y = 0; y < finances.length; y++) {
+        if (theMax === finances[y][1]) {
+            console.log("Greatest Increase in Profits: " + finances[y][0] + " $" + "(" + theMax + ")");
+            }
+            document.getElementById("greatestIncrease").innerHTML = "Greatest Increase in Profits: " + finances[y][0] + " $" + "(" + theMax + ")";
+     }
 
-// for (let i = 0; i < finances.length; i++) {
-//          financialChanges += finances[i][1];
-//         monthlyDiff = finances[i][1][i-1] - finances[i][1][i];
-//         console.log(monthlyDiff);
-//     }
-
+    theMin = (Math.min(...newList))
+// console.log(theMin);
+ for (let x = 0; x < finances.length; x++) {
+    if (theMin === finances[x][1]) {
+        console.log("Greatest Decrease in Profits: " + finances[x][0] + " $" + "(" + theMin + ")");
+        }
+        document.getElementById("greatestDecrease").innerHTML = "Greatest Decrease in Profits: " + finances[x][0] + " $" + "(" + theMin + ")";
+ }
+    
